@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useYoutube } from '@/contexts/YoutubeContext';
 import { Button } from '@/components/ui/button';
@@ -97,7 +96,7 @@ const comments = [
       name: 'Robert Fox',
       avatar: 'https://i.pravatar.cc/150?img=8',
     },
-    text: 'I've been struggling with this concept for weeks and your explanation finally made it click. Thank you so much!',
+    text: "I've been struggling with this concept for weeks and your explanation finally made it click. Thank you so much!",
     likes: 118,
     timestamp: '1 week ago',
     replies: 2,
@@ -108,7 +107,7 @@ const comments = [
       name: 'Esther Howard',
       avatar: 'https://i.pravatar.cc/150?img=13',
     },
-    text: 'Quick question - does this approach work with Next.js as well? I'm building a project with it and would love to apply these techniques.',
+    text: "Quick question - does this approach work with Next.js as well? I'm building a project with it and would love to apply these techniques.",
     likes: 53,
     timestamp: '3 days ago',
     replies: 7,
