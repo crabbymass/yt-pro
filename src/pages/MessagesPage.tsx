@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useYoutube } from '@/contexts/YoutubeContext';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -91,7 +90,7 @@ const mockContacts: ChatContact[] = [
       },
       {
         id: 'm2',
-        text: 'I'll try them out',
+        text: "I'll try them out",
         sender: 'user',
         timestamp: '2 days ago'
       },
