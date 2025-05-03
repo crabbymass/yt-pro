@@ -62,7 +62,7 @@ const VideoCard: React.FC<VideoProps> = ({
           </div>
         </div>
         <div className="flex-grow min-w-0">
-          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-purple-700 transition-colors">{title}</h3>
+          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-red-700 transition-colors">{title}</h3>
           <Link
             to={`/channel`}
             className="text-xs text-youtube-darkgray hover:text-black animated-underline"
@@ -132,11 +132,11 @@ const VideoCard: React.FC<VideoProps> = ({
             className="block w-full cursor-pointer"
             onClick={handleVideoClick}
           >
-            <h3 className="font-medium text-sm md:text-base line-clamp-2 mb-1 group-hover/video:text-purple-700 transition-colors">{title}</h3>
+            <h3 className="font-medium text-sm md:text-base line-clamp-2 mb-1 group-hover/video:text-red-700 transition-colors">{title}</h3>
           </Link>
           <Link
             to={`/channel`}
-            className="block text-sm text-youtube-darkgray hover:text-black transition-colors animated-underline"
+            className="block text-sm text-youtube-darkgray hover:text-red-700 transition-colors animated-underline"
             onClick={handleChannelClick}
           >
             {channel.name}

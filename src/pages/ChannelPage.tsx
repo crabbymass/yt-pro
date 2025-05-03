@@ -201,7 +201,7 @@ const ChannelPage: React.FC = () => {
   return (
     <div className="pb-8 animate-fade-in">
       {/* Channel Banner */}
-      <div className="h-32 sm:h-40 lg:h-56 bg-gradient-to-r from-blue-400 to-purple-500 w-full mb-4 overflow-hidden relative group">
+      <div className="h-32 sm:h-40 lg:h-56 bg-gradient-to-r from-blue-400 to-red-500 w-full mb-4 overflow-hidden relative group">
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
       </div>
 
@@ -213,15 +213,15 @@ const ChannelPage: React.FC = () => {
             <img
               src="https://i.pravatar.cc/150?img=12"
               alt="DevTech"
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-200 group-hover:scale-105 border-2 border-transparent group-hover:border-purple-400"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-200 group-hover:scale-105 border-2 border-transparent group-hover:border-red-400"
             />
-            <div className="absolute inset-0 bg-purple-500 rounded-full opacity-0 group-hover:opacity-25 transition-opacity"></div>
+            <div className="absolute inset-0 bg-red-500 rounded-full opacity-0 group-hover:opacity-25 transition-opacity"></div>
           </div>
           
           {/* Channel Details */}
           <div className="flex-1 transition-all duration-300 hover:translate-x-1">
             <h1 className="text-xl sm:text-2xl font-bold group">
-              <span className="bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 group-hover:text-transparent transition-all duration-300">DevTech</span>
+              <span className="bg-clip-text bg-gradient-to-r from-red-600 to-blue-500 group-hover:text-transparent transition-all duration-300">DevTech</span>
             </h1>
             <div className="text-sm text-youtube-darkgray">
               <span>@devtech</span>
@@ -291,7 +291,7 @@ const ChannelPage: React.FC = () => {
                 <TabsTrigger 
                   key={tab} 
                   value={tab}
-                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-black data-[state=active]:rounded-none px-4 h-full transition-all hover:bg-gray-100 hover:text-purple-600 active:scale-95"
+                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-black data-[state=active]:rounded-none px-4 h-full transition-all hover:bg-gray-100 hover:text-red-600 active:scale-95"
                 >
                   {tab}
                 </TabsTrigger>
