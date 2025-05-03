@@ -1,25 +1,47 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { YoutubeProvider } from "@/contexts/YoutubeContext";
+import Layout from "@/components/layout/Layout";
+import HomePage from "@/pages/HomePage";
+import WatchPage from "@/pages/WatchPage";
+import ChannelPage from "@/pages/ChannelPage";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <YoutubeProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/watch" element={<WatchPage />} />
+              <Route path="/channel" element={<ChannelPage />} />
+              {/* Placeholder routes for sidebar navigation */}
+              <Route path="/shorts" element={<NotFound />} />
+              <Route path="/subscriptions" element={<NotFound />} />
+              <Route path="/history" element={<NotFound />} />
+              <Route path="/your-videos" element={<NotFound />} />
+              <Route path="/watch-later" element={<NotFound />} />
+              <Route path="/liked-videos" element={<NotFound />} />
+              <Route path="/trending" element={<NotFound />} />
+              <Route path="/shopping" element={<NotFound />} />
+              <Route path="/music" element={<NotFound />} />
+              <Route path="/sports" element={<NotFound />} />
+              <Route path="/learning" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </YoutubeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
