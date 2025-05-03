@@ -5,9 +5,11 @@ import { useYoutube } from '@/contexts/YoutubeContext';
 import { Link } from 'react-router-dom';
 import { 
   Home, Film, Bookmark, Clock, ThumbsUp, History, PlaySquare, 
-  Flame, ShoppingBag, Music, Trophy, Lightbulb, Youtube, Library
+  Flame, ShoppingBag, Music, Trophy, Lightbulb, Youtube, Library,
+  MessageCircle, MessageSquare
 } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface SidebarItemProps {
   icon: React.ReactNode;
@@ -76,6 +78,11 @@ const Sidebar: React.FC = () => {
               label="Subscriptions" 
               to="/subscriptions" 
             />
+            <SidebarItem 
+              icon={<MessageSquare size={20} />} 
+              label="Messages" 
+              to="/messages" 
+            />
 
             {isSidebarExpanded && (
               <div className="mt-2 pt-3 border-t border-gray-200">
@@ -84,7 +91,7 @@ const Sidebar: React.FC = () => {
             )}
 
             <SidebarItem 
-              icon={<User size={20} />} 
+              icon={<ProfileAvatar />} 
               label="Your Channel" 
               to="/channel" 
               active={currentPage === 'channel'}
@@ -201,12 +208,11 @@ const SubscriptionChannel: React.FC<{ name: string; img: string }> = ({ name, im
   );
 };
 
-const User = ({ size }: { size: number }) => (
-  <div className="flex items-center justify-center">
-    <div className="h-5 w-5 rounded-full bg-blue-500 text-white flex items-center justify-center overflow-hidden">
-      U
-    </div>
-  </div>
+const ProfileAvatar = () => (
+  <Avatar className="h-5 w-5">
+    <AvatarImage src="https://i.pravatar.cc/150?img=30" alt="Profile" />
+    <AvatarFallback className="bg-red-500 text-white text-xs">U</AvatarFallback>
+  </Avatar>
 );
 
 export default Sidebar;

@@ -18,11 +18,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="flex flex-1 relative">
         <Sidebar />
         <main 
-          className={`flex-1 transition-all duration-300 pt-14 overflow-y-auto max-h-screen ${
+          className={`flex-1 transition-all duration-300 pt-14 overflow-y-auto max-h-[calc(100vh-56px)] ${
             isSidebarExpanded ? 'ml-60' : 'ml-20'
           } bg-[#f9f9f9]`}
         >
-          <div className="animate-fadeIn">
+          <div className="animate-fadeIn pb-8">
             {children}
           </div>
         </main>

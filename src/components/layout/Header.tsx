@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { useYoutube } from '@/contexts/YoutubeContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Menu, Search, Mic, Video, Bell, User } from 'lucide-react';
+import { Menu, Search, Mic, Video, Bell } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Header: React.FC = () => {
   const { toggleSidebar } = useYoutube();
@@ -99,14 +100,12 @@ const Header: React.FC = () => {
         >
           <Bell className="h-5 w-5" />
         </Button>
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="rounded-full bg-blue-500 text-white hover:text-white hover:bg-blue-600"
-          aria-label="Profile"
-        >
-          <User className="h-5 w-5" />
-        </Button>
+        <Link to="/channel">
+          <Avatar className="h-9 w-9 hover:ring-2 hover:ring-red-500 transition-all duration-300 cursor-pointer">
+            <AvatarImage src="https://i.pravatar.cc/150?img=30" alt="Profile" />
+            <AvatarFallback className="bg-red-500 text-white">YT</AvatarFallback>
+          </Avatar>
+        </Link>
       </div>
     </header>
   );
