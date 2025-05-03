@@ -9,6 +9,7 @@ import Layout from "@/components/layout/Layout";
 import HomePage from "@/pages/HomePage";
 import WatchPage from "@/pages/WatchPage";
 import ChannelPage from "@/pages/ChannelPage";
+import MessagesPage from "@/pages/MessagesPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
               <Route path="/" element={<HomePage />} />
               <Route path="/watch" element={<WatchPage />} />
               <Route path="/channel" element={<ChannelPage />} />
+              <Route path="/messages" element={<MessagesPage />} />
               {/* Placeholder routes for sidebar navigation */}
               <Route path="/shorts" element={<NotFound />} />
               <Route path="/subscriptions" element={<NotFound />} />

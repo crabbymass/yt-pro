@@ -77,6 +77,30 @@
   .pulse-effect {
     @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
   }
+  
+  /* Message bubble animations */
+  .message-bubble-in {
+    @apply animate-slide-in-left;
+  }
+  
+  .message-bubble-out {
+    @apply animate-slide-in-right;
+  }
+  
+  /* Button hover effects */
+  .button-hover-grow {
+    @apply transform transition-transform hover:scale-105 active:scale-95;
+  }
+  
+  /* Navigation hover effect */
+  .nav-hover {
+    @apply relative overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-red-500 before:transition-all hover:before:w-full;
+  }
+  
+  /* Sidebar item hover */
+  .sidebar-item-hover {
+    @apply relative transition-all duration-200 hover:bg-red-50 hover:text-red-600;
+  }
 }
 
 @layer utilities {
@@ -91,10 +115,25 @@
     to { transform: translateX(0); opacity: 1; }
   }
   
+  @keyframes slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
   @keyframes pop {
-    0% { transform: scale(0.95); }
+    0% { transform: scale(0.95); opacity: 0; }
     50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.2); }
+    50% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
   }
   
   .animate-fadeIn {
@@ -105,8 +144,24 @@
     animation: slideIn 0.4s ease-out forwards;
   }
   
+  .animate-slide-in-left {
+    animation: slideIn 0.4s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
   .animate-pop {
     animation: pop 0.3s ease-in-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
   }
   
   /* Scrollbar styling */
@@ -120,6 +175,20 @@
   
   .styled-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+  }
+  
+  /* Apply to all scrollbars */
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-red-400 transition-colors;
   }
 }
 
