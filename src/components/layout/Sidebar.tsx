@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useYoutube } from '@/contexts/YoutubeContext';
@@ -81,7 +80,8 @@ const Sidebar: React.FC = () => {
             <SidebarItem 
               icon={<MessageSquare size={20} />} 
               label="Messages" 
-              to="/messages" 
+              to="/messages"
+              active={currentPage === 'messages'}
             />
 
             {isSidebarExpanded && (
