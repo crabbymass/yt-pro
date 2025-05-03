@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useYoutube } from '@/contexts/YoutubeContext';
 import { MoreVertical } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
 export interface VideoProps {
   id: string;
@@ -47,24 +48,24 @@ const VideoCard: React.FC<VideoProps> = ({
     return (
       <Link
         to={`/watch`}
-        className="flex w-full gap-2 mb-2 hover:bg-gray-100 rounded-lg p-1 transition-colors"
+        className="flex w-full gap-2 mb-2 hover:bg-gray-100 rounded-lg p-1 transition-all duration-200 hover:shadow-sm hover-scale"
         onClick={handleVideoClick}
       >
-        <div className="relative flex-shrink-0 w-40 h-20">
+        <div className="relative flex-shrink-0 w-40 h-20 overflow-hidden rounded-lg">
           <img
             src={thumbnail}
             alt={title}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
           />
           <div className="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1 rounded">
             {duration}
           </div>
         </div>
         <div className="flex-grow min-w-0">
-          <h3 className="text-sm font-medium line-clamp-2">{title}</h3>
+          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-purple-700 transition-colors">{title}</h3>
           <Link
             to={`/channel`}
-            className="text-xs text-youtube-darkgray hover:text-black"
+            className="text-xs text-youtube-darkgray hover:text-black animated-underline"
             onClick={handleChannelClick}
           >
             {channel.name}
@@ -78,7 +79,7 @@ const VideoCard: React.FC<VideoProps> = ({
   }
 
   return (
-    <div className="group/video">
+    <div className="group/video animate-fadeIn hover-shadow rounded-lg overflow-hidden">
       <Link
         to={`/watch`}
         className="block w-full cursor-pointer"
@@ -88,24 +89,42 @@ const VideoCard: React.FC<VideoProps> = ({
           <img
             src={thumbnail}
             alt={title}
-            className="w-full object-cover aspect-video"
+            className="w-full object-cover aspect-video transition-transform duration-500 group-hover/video:scale-105"
           />
           <div className="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1 rounded">
             {duration}
           </div>
+          <div className="absolute inset-0 bg-black opacity-0 group-hover/video:opacity-10 transition-opacity"></div>
         </div>
       </Link>
-      <div className="flex gap-3 mt-2">
+      <div className="flex gap-3 mt-2 p-2">
         <Link
           to={`/channel`}
-          className="flex-shrink-0"
+          className="flex-shrink-0 transition-transform duration-200 hover:scale-110"
           onClick={handleChannelClick}
         >
-          <img
-            src={channel.avatar}
-            alt={channel.name}
-            className="w-9 h-9 rounded-full"
-          />
+          <HoverCard>
+            <HoverCardTrigger>
+              <img
+                src={channel.avatar}
+                alt={channel.name}
+                className="w-9 h-9 rounded-full transition-all duration-300 hover:shadow-md"
+              />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-64">
+              <div className="flex gap-3">
+                <img
+                  src={channel.avatar}
+                  alt={channel.name}
+                  className="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <h4 className="font-medium">{channel.name}</h4>
+                  <p className="text-xs text-youtube-darkgray">500K subscribers</p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </Link>
         <div className="flex-grow min-w-0">
           <Link
@@ -113,11 +132,11 @@ const VideoCard: React.FC<VideoProps> = ({
             className="block w-full cursor-pointer"
             onClick={handleVideoClick}
           >
-            <h3 className="font-medium text-sm md:text-base line-clamp-2 mb-1">{title}</h3>
+            <h3 className="font-medium text-sm md:text-base line-clamp-2 mb-1 group-hover/video:text-purple-700 transition-colors">{title}</h3>
           </Link>
           <Link
             to={`/channel`}
-            className="block text-sm text-youtube-darkgray hover:text-black"
+            className="block text-sm text-youtube-darkgray hover:text-black transition-colors animated-underline"
             onClick={handleChannelClick}
           >
             {channel.name}
@@ -126,8 +145,8 @@ const VideoCard: React.FC<VideoProps> = ({
             {views} • {timestamp}
           </div>
         </div>
-        <div className="invisible group-hover/video:visible">
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+        <div className="opacity-0 group-hover/video:opacity-100 transition-opacity">
+          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full hover:bg-gray-200">
             <MoreVertical className="h-4 w-4" />
           </Button>
         </div>

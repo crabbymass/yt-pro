@@ -13,16 +13,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isSidebarExpanded } = useYoutube();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-hidden">
       <Header />
-      <div className="flex flex-1">
+      <div className="flex flex-1 relative">
         <Sidebar />
         <main 
-          className={`flex-1 transition-all duration-200 pt-14 ${
+          className={`flex-1 transition-all duration-300 pt-14 overflow-y-auto max-h-screen ${
             isSidebarExpanded ? 'ml-60' : 'ml-20'
           } bg-[#f9f9f9]`}
         >
-          {children}
+          <div className="animate-fadeIn">
+            {children}
+          </div>
         </main>
       </div>
       <CreatorDmModal />

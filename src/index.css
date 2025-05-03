@@ -48,6 +48,85 @@
   }
 
   body {
-    @apply font-roboto bg-white text-youtube-black;
+    @apply font-roboto bg-white text-youtube-black overflow-hidden;
   }
+  
+  html {
+    @apply overflow-hidden;
+    scrollbar-gutter: stable;
+  }
+}
+
+@layer components {
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .hover-brighten {
+    @apply transition-all duration-200 hover:brightness-105;
+  }
+  
+  .hover-shadow {
+    @apply transition-all duration-200 hover:shadow-md;
+  }
+  
+  .animated-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-purple-500 after:transition-all after:duration-300 hover:after:w-full;
+  }
+  
+  .pulse-effect {
+    @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 0.4s ease-out forwards;
+  }
+  
+  .animate-pop {
+    animation: pop 0.3s ease-in-out forwards;
+  }
+  
+  /* Scrollbar styling */
+  .styled-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .styled-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  .styled-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+  }
+}
+
+/* Remove default App.css styles to avoid conflicts */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }

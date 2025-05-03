@@ -1,11 +1,11 @@
-
 import React, { useEffect, useState } from 'react';
 import { useYoutube } from '@/contexts/YoutubeContext';
 import { Button } from '@/components/ui/button';
 import VideoCard from '@/components/home/VideoCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { BellIcon, MessageSquare } from 'lucide-react';
+import { BellIcon, MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
 // Sample channel videos
 const channelVideos = [
@@ -199,23 +199,30 @@ const ChannelPage: React.FC = () => {
   }, [setCurrentPage]);
 
   return (
-    <div className="pb-8">
+    <div className="pb-8 animate-fade-in">
       {/* Channel Banner */}
-      <div className="h-32 sm:h-40 lg:h-56 bg-gradient-to-r from-blue-400 to-purple-500 w-full mb-4"></div>
+      <div className="h-32 sm:h-40 lg:h-56 bg-gradient-to-r from-blue-400 to-purple-500 w-full mb-4 overflow-hidden relative group">
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+      </div>
 
       {/* Channel Info */}
       <div className="px-4 lg:px-8 mb-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           {/* Channel Avatar */}
-          <img
-            src="https://i.pravatar.cc/150?img=12"
-            alt="DevTech"
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full"
-          />
+          <div className="relative group">
+            <img
+              src="https://i.pravatar.cc/150?img=12"
+              alt="DevTech"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-200 group-hover:scale-105 border-2 border-transparent group-hover:border-purple-400"
+            />
+            <div className="absolute inset-0 bg-purple-500 rounded-full opacity-0 group-hover:opacity-25 transition-opacity"></div>
+          </div>
           
           {/* Channel Details */}
-          <div className="flex-1">
-            <h1 className="text-xl sm:text-2xl font-bold">DevTech</h1>
+          <div className="flex-1 transition-all duration-300 hover:translate-x-1">
+            <h1 className="text-xl sm:text-2xl font-bold group">
+              <span className="bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 group-hover:text-transparent transition-all duration-300">DevTech</span>
+            </h1>
             <div className="text-sm text-youtube-darkgray">
               <span>@devtech</span>
               <span className="mx-1">•</span>
@@ -227,28 +234,37 @@ const ChannelPage: React.FC = () => {
               <span className="line-clamp-1 mr-1">
                 Web development tutorials focused on React, JavaScript, and modern frontend technologies.
               </span>
-              <button className="text-youtube-darkgray hover:text-black">more</button>
+              <button className="text-youtube-darkgray hover:text-black transition-colors">more</button>
             </div>
           </div>
           
           {/* Action Buttons */}
           <div className="flex items-center gap-2 self-start sm:self-center mt-2 sm:mt-0">
-            <Button 
-              onClick={() => openCreatorDm()}
-              variant="ghost"
-              className="bg-gray-100 hover:bg-gray-200 flex items-center gap-2 rounded-full h-9"
-            >
-              <MessageSquare className="h-5 w-5" />
-              <span>Message</span>
-            </Button>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Button 
+                  onClick={() => openCreatorDm()}
+                  variant="ghost"
+                  className="bg-gray-100 hover:bg-gray-200 flex items-center gap-2 rounded-full h-9 transition-transform hover:scale-105"
+                >
+                  <MessageSquare className="h-5 w-5" />
+                  <span>Message</span>
+                </Button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-64">
+                <div className="text-sm">
+                  <p>Send a direct message to DevTech</p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
             
             <Button 
               onClick={() => setIsSubscribed(!isSubscribed)}
-              className={`rounded-full h-9 flex items-center gap-2 ${
+              className={`rounded-full h-9 flex items-center gap-2 transition-all duration-200 ${
                 isSubscribed 
                   ? 'bg-gray-100 hover:bg-gray-200 text-black' 
                   : 'bg-black hover:bg-zinc-800 text-white'
-              }`}
+              } hover:scale-105`}
             >
               {isSubscribed ? 'Subscribed' : 'Subscribe'}
             </Button>
@@ -257,7 +273,7 @@ const ChannelPage: React.FC = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full h-9 w-9 bg-gray-100 hover:bg-gray-200"
+                className="rounded-full h-9 w-9 bg-gray-100 hover:bg-gray-200 transition-transform hover:scale-105"
               >
                 <BellIcon className="h-5 w-5" />
               </Button>
@@ -270,12 +286,12 @@ const ChannelPage: React.FC = () => {
       <ScrollArea className="w-full border-b border-gray-200">
         <div className="px-4 lg:px-8 min-w-max">
           <Tabs defaultValue="Home" value={currentChannelTab} onValueChange={setCurrentChannelTab}>
-            <TabsList className="bg-transparent h-10 justify-start p-0 gap-2">
+            <TabsList className="bg-transparent h-10 justify-start p-0 gap-2 mb-0">
               {['Home', 'Videos', 'Shorts', 'Live', 'Playlists', 'Community', 'Store', 'Channels', 'About'].map((tab) => (
                 <TabsTrigger 
                   key={tab} 
                   value={tab}
-                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-black data-[state=active]:rounded-none px-4 h-full"
+                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-black data-[state=active]:rounded-none px-4 h-full transition-all hover:bg-gray-100 hover:text-purple-600 active:scale-95"
                 >
                   {tab}
                 </TabsTrigger>
